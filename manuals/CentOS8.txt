@@ -1,0 +1,41 @@
+ssh root@server_ip  # ssh поключение
+
+### Создание пользователя
+
+adduser kepler           # Создать нового пользователя в системе
+passwd kepler            # Задать пароль
+usermod -aG wheel kepler # Пользователям, принадлежащим к группе wheel, разрешается использовать команду sudo
+
+### Фаервол firewalld
+
+dnf install firewalld -y                         # Установка фаервола firewalld
+systemctl start firewalld                        # Запуск службы фаервола
+systemctl status firewalld                       # Статус службы фаервола
+firewall-cmd --permanent --list-all              # Отобразить службы, которые разрешены фаерволом
+firewall-cmd --get-services                      # Отобразить службы, которые можно активировать в фаерволе
+sudo firewall-cmd --permanent --add-service=http # Добавить службу http и открыть для TCP-трафика порт 80
+sudo firewall-cmd --reload                       # Обновить конфигурацию брандмауера
+
+### Менеджер пакетов yum
+
+yum install git           # Установка пакета
+yum remove git            # Удаление пакета
+yum reinstall git         # Переустанавливаем пакет
+yum search mutt           # Поиск по пакетам
+yum list mysql*           # Проверить, установлен ли пакет
+yum check-update          # Проверка наличия доступных обновлений
+yum update                # Обновление всех установленных пакетов
+yum info git              # Получение информации о пакете
+yum deplist git           # Получение списка зависимостей пакета
+yum update git            # Обновление конкретного пакета
+yum downgrade git         # Откатываем пакет к предыдущей версии
+yum list available | less # Список всех доступных пакетов
+yum list installed | less # Спискок всех установленных пакетов
+
+### Локали
+
+localectl list-locales               # Показать список доступных локалей в системе
+localectl                            # Отобразить активную locale
+dnf install glibc-langpack-ru        # Устанавливаем русскую локаль
+localectl set-locale LANG=ru_RU.utf8 # Установка по умолчанию русской локали
+
