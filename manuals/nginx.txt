@@ -12,9 +12,12 @@ curl -I 127.0.0.1 # Запрос хедеров
 
 ### Установка
 
-apt install nginx        # Установка в Ubuntu
-yum install epel-release # Установка репозитория для centOS
-yum install nginx        # Установка в centOS
+apt install nginx           # Установка в Ubuntu
+yum install epel-release    # Установка репозитория для centOS
+yum install nginx           # Установка в centOS
+systemctl start nginx       # Старт службы
+systemctl status nginx      # Статус службы
+sudo systemctl enable nginx # Добавить службу в автозагрузку
 
 ### Установка из исходников
 
