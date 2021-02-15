@@ -6,16 +6,6 @@ adduser kepler           # Создать нового пользователя 
 passwd kepler            # Задать пароль
 usermod -aG wheel kepler # Пользователям, принадлежащим к группе wheel, разрешается использовать команду sudo
 
-### Фаервол firewalld
-
-dnf install firewalld -y                         # Установка фаервола firewalld
-systemctl start firewalld                        # Запуск службы фаервола
-systemctl status firewalld                       # Статус службы фаервола
-firewall-cmd --permanent --list-all              # Отобразить службы, которые разрешены фаерволом
-firewall-cmd --get-services                      # Отобразить службы, которые можно активировать в фаерволе
-sudo firewall-cmd --permanent --add-service=http # Добавить службу http и открыть для TCP-трафика порт 80
-sudo firewall-cmd --reload                       # Обновить конфигурацию брандмауера
-
 ### Менеджер пакетов yum
 
 yum install git           # Установка пакета
