@@ -2,7 +2,7 @@ from pymysql import connect
 from pymysql.cursors import DictCursor
 
 
-class mysql_connection:
+class MySQLConnection:
     def __init__(self):
         # initialisation connection
         self.connection = connect(host='localhost',
@@ -49,7 +49,7 @@ class mysql_connection:
 
 
 def work_with_mysql():
-    '''
+    """
     structure mysql test table:
     CREATE TABLE `questions` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -57,8 +57,8 @@ def work_with_mysql():
     `content` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
-    '''
-    db = mysql_connection()
+    """
+    db = MySQLConnection()
     print(db.mysql_insert(1, 'aaaaaaaa'))
     print(db.mysql_insert(2, 'bbbbbbbb'))
     print(db.mysql_update(1, 'cccccccc'))
@@ -67,8 +67,10 @@ def work_with_mysql():
         print(row['number'], row['content'])
     print(db.mysql_close_connection())
 
+
 def main():
     work_with_mysql()
+
 
 if __name__ == '__main__':
     main()
