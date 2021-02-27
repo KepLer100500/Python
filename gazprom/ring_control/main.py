@@ -2,15 +2,16 @@ import sys
 from time import strftime
 from PyQt5.QtCore import QSize, Qt
 from pysnmp.hlapi import SnmpEngine, CommunityData, UdpTransportTarget, ContextData, ObjectType, ObjectIdentity, nextCmd
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QWidget, QTableWidget, QTableWidgetItem, QDesktopWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGridLayout, QWidget, QTableWidget, QTableWidgetItem, \
+    QDesktopWidget, QPushButton
 from PyQt5.QtGui import QColor, QIcon
 
 
 class SNMP:
     def __init__(self):
-        '''
+        """
         Define snmp settings
-        '''
+        """
         self.password = 'public'
         self.oid = '1.3.6.1.4.1.248.14.5.1.1.7'
         with open('id_ip.txt', 'r') as file:
@@ -23,13 +24,13 @@ class MainForm(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        '''
+        """
         Create user interface
-        '''
+        """
         self.setWindowTitle('Hyper Rings')
         self.setWindowIcon(QIcon('icon.ico'))
         self.setGeometry(500, 400, 350, 400)
-        self.setMinimumSize(QSize(333, 500))        
+        self.setMinimumSize(QSize(333, 500))
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
         grid = QGridLayout()
@@ -43,9 +44,9 @@ class MainForm(QMainWindow):
         self.show()
 
     def fill_table(self, table):
-        '''
+        """
         Insert received data into table
-        '''
+        """
         snmp = SNMP()
         data = get_data(snmp)
         table.clear()
@@ -69,37 +70,39 @@ class MainForm(QMainWindow):
         table.resizeColumnsToContents()
 
     def center(self):
-        '''
+        """
         Put created window into center display
-        '''
-        window = self.frameGeometry() 
+        """
+        window = self.frameGeometry()
         monitor = QDesktopWidget().availableGeometry().center()
-        window.moveCenter(monitor) 
+        window.moveCenter(monitor)
         self.move(window.topLeft())
 
 
 def get_data(snmp):
-    '''
+    """
     Get states ring manager of all RS's
-    '''
+    """
     link_states = []
     for rs_name in snmp.hosts:
         ip = snmp.hosts[rs_name]
         for (_, _, _, values) in nextCmd(SnmpEngine(),
-                                            CommunityData(snmp.password),
-                                            UdpTransportTarget((ip, 161)),
-                                            ContextData(),
-                                            ObjectType(ObjectIdentity(snmp.oid)),
-                                            lookupMib=False,
-                                            lexicographicMode=False):
+                                         CommunityData(snmp.password),
+                                         UdpTransportTarget((ip, 161)),
+                                         ContextData(),
+                                         ObjectType(ObjectIdentity(snmp.oid)),
+                                         lookupMib=False,
+                                         lexicographicMode=False):
             resolve = [value[1] for value in values][0]
             link_states.append([strftime('%Y-%m-%d %H:%M:%S'), rs_name, ip, str(resolve).strip()])
     return link_states
+
 
 def main():
     app = QApplication(sys.argv)
     mf = MainForm()
     sys.exit(app.exec_())
+
 
 if __name__ == "__main__":
     main()
