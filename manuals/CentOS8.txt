@@ -1,4 +1,5 @@
 ssh root@server_ip  # ssh поключение
+scp index.html kepler@ip:/home/kepler/www/index.html # Залить файл на удалённый сервер
 
 ### Создание пользователя
 
