@@ -1,1 +1,5 @@
-<img src=https://www.codewars.com/users/KepLer100500/badges/small>
+![1](https://user-images.githubusercontent.com/63150258/111351856-095cdb80-869d-11eb-8cfc-8e59a7e98b31.png)
+![2](https://user-images.githubusercontent.com/63150258/111351864-0b269f00-869d-11eb-9c92-403650279975.png)
+![3](https://user-images.githubusercontent.com/63150258/111351904-137eda00-869d-11eb-9227-c5a2b06f65a8.png)
+![4](https://user-images.githubusercontent.com/63150258/111351924-1974bb00-869d-11eb-9b40-2a5c43d819c8.png)
+![5](https://user-images.githubusercontent.com/63150258/111351957-20033280-869d-11eb-9f61-d0a716601a24.png)
